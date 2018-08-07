@@ -1,0 +1,21 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "An example of how to author libraries using webpack",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel -d lib/ src/",
+    "test": "mocha --require babel-register \"src/test/**/*.test.js\"",
+    "dev": "npm run test -- --watch"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "eslint": "^3.9.1",
+    "eslint-loader": "^1.6.1",
+    "mocha": "^5.2.0"
+  }
+}
