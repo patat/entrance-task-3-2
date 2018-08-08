@@ -8,7 +8,9 @@ import {
   getAvailablePositions,
   composeSchedule,
   augmentDevices,
-  testAgainstMaxPower
+  testAgainstMaxPower,
+  gaCompose,
+  convertEntityToSchedule
 } from '../index';
 
 describe('loadData', function suitLoadData() {
@@ -180,9 +182,18 @@ describe('augmentDevices', function() {
 });
 
 describe('testAgainstMaxPower', function() {
+  let data;
+
+  beforeEach(function() {
+    data = loadData('src/test/inputExample.json');
+  });
   it('returns true if scheduled devices stay within maxPower constraint', function test() {
     const schedule = loadData('src/test/invalidSchedule.json');
-    const data = loadData('src/test/inputExample.json');
+    expect(testAgainstMaxPower(schedule, data)).to.equal(true);
+  });
+
+  it('returns true if scheduled devices stay within maxPower constraint', function test() {
+    const schedule = loadData('src/test/invalidSchedule.json');
     expect(testAgainstMaxPower(schedule, data)).to.equal(true);
   });
 });
@@ -198,7 +209,24 @@ describe('composeSchedule', function() {
   it('composes a schedule that includes each device once', function test() {
     const augmentedDevices = augmentDevices(data.devices, positions);
     const schedule = composeSchedule(augmentedDevices);
-    //console.log(schedule);
+  });
+});
+
+describe('gaCompose', function() {
+  let data,
+    positions,
+    augmentedDevices;
+
+  beforeEach(function() {
+    data = loadData('src/test/inputExample.json');
+    positions = calcPositions(data);
+    augmentedDevices = augmentDevices(data.devices, positions);
+  });
+  it('works', function test() {
+    const composed = gaCompose(augmentedDevices, data.maxPower);
+    const schedule = convertEntityToSchedule(composed.entity, augmentedDevices);
+    console.log(schedule);
+    expect(testAgainstMaxPower(schedule, data)).to.equal(true);
   });
 });
 
