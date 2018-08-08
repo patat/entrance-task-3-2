@@ -225,7 +225,6 @@ describe('gaCompose', function() {
   it('works', function test() {
     const composed = gaCompose(augmentedDevices, data.maxPower);
     const schedule = convertEntityToSchedule(composed.entity, augmentedDevices);
-    console.log(schedule);
     expect(testAgainstMaxPower(schedule, data)).to.equal(true);
   });
 });

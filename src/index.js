@@ -238,7 +238,6 @@ export function gaCompose(devices, maxPower) {
   };
 
   genetic.notification = function(pop, generation, stats, isFinished) {
-    console.log(stats);
     if (isFinished) {
       userData.result = pop[0];
     }
