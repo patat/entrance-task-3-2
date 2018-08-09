@@ -27,7 +27,7 @@ describe('TestDataGenerator', function() {
     it('generates a set of rates', function test() {
       const rates = testDataGenerator.generateRates();
       expect(testDataGenerator.generateRates()).to.have.length(config.rates.zones);
-      console.log(rates);
+      console.log(JSON.stringify(rates));
     });
 
     describe('@_generateNrndsWithSumM', function() {
