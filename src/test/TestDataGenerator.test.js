@@ -1,11 +1,14 @@
 import { expect } from 'chai';
 import TestDataGenerator from '../TestDataGenerator';
+import DataValidator from '../DataValidator';
 
 describe('TestDataGenerator', function() {
   let testDataGenerator,
+    dataValidator,
     config = {};
   beforeEach(function() {
     testDataGenerator = new TestDataGenerator(config);
+    dataValidator = new DataValidator();
   });
 
   describe('@generate', function() {
@@ -18,16 +21,21 @@ describe('TestDataGenerator', function() {
     beforeEach(function() {
       config = {
         rates: {
-          zones: 6,
+          periods: 6,
           priceInterval: [2, 6]
         }
       };
       testDataGenerator = new TestDataGenerator(config);
     });
-    it('generates a set of rates', function test() {
+    it('produces rates that are accepted by DataValidator', function test() {
       const rates = testDataGenerator.generateRates();
-      expect(testDataGenerator.generateRates()).to.have.length(config.rates.zones);
-      console.log(JSON.stringify(rates));
+      const isRatesValid = dataValidator.validateRates(rates);
+      expect(isRatesValid).to.equal(true);
+    });
+
+    it('produces rates that contain user devined number of periods', function test() {
+      const rates = testDataGenerator.generateRates();
+      expect(rates).to.have.length(config.rates.periods);
     });
 
     describe('@_generateNrndsWithSumM', function() {

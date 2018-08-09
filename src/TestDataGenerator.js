@@ -1,10 +1,11 @@
 import merge from 'deepmerge';
+import fs from 'fs';
 
 export default class TestDataGenerator {
   constructor(config = {}) {
     const defaultConfig = {
       rates: {
-        zones: 5,
+        periods: 5,
         priceInterval: [1, 7]
       }
     };
@@ -22,24 +23,24 @@ export default class TestDataGenerator {
   generateRates() {
     let valueMin, valueMax;
     [valueMin, valueMax] = this.config.rates.priceInterval;
-    const rateZoneLengths = this._generateNrndsWithSumM(this.config.rates.zones, this._24HOURS);
+    const ratePeriodLengths = this._generateNrndsWithSumM(this.config.rates.periods, this._24HOURS);
     const cycleBias = this._randomInt(0, this._24HOURS);
-    let currZoneFrom = cycleBias;
-    return rateZoneLengths.map(zoneLength => {
-      let currZoneTo = currZoneFrom + zoneLength;
-      if (currZoneTo >= this._24HOURS ) {
-        currZoneTo -= this._24HOURS;
+    let currPeriodFrom = cycleBias;
+    return ratePeriodLengths.map(PeriodLength => {
+      let currPeriodTo = currPeriodFrom + PeriodLength;
+      if (currPeriodTo >= this._24HOURS ) {
+        currPeriodTo -= this._24HOURS;
       }
 
-      const zone = {
-        from: currZoneFrom,
-        to: currZoneTo,
+      const period = {
+        from: currPeriodFrom,
+        to: currPeriodTo,
         value: this._randomFloat2(valueMin, valueMax)   
       }
 
-      currZoneFrom = currZoneTo;
+      currPeriodFrom = currPeriodTo;
 
-      return zone;
+      return period;
     });
     
   }
