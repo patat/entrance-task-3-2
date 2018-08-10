@@ -3,29 +3,26 @@ import { loadData } from '../index';
 import DataValidator from '../DataValidator';
 
 describe('DataValidator', function() {
-  let dataValidator;
+  let dataValidator,
+    iterateThroughData;
   beforeEach(function() {
     dataValidator = new DataValidator();
+    iterateThroughData = (method, validSamples, invalidSamples) => {
+      validSamples.forEach(sample => {
+        expect(dataValidator[method](sample)).to.equal(true);
+      });
+      invalidSamples.forEach(sample => {
+        expect(dataValidator[method](sample)).to.equal(false);
+      });    
+    };
   });
-  // it('exists', function test() {
-
-  // });
 
   describe('@validateRates', function() {
     let validRates,
-      invalidRates,
-      iterateThroughData;
+      invalidRates;
     beforeEach(function() {
       validRates = loadData('src/test/validRates.json');
       invalidRates = loadData('src/test/invalidRates.json');
-      iterateThroughData = (method, validSamples, invalidSamples) => {
-        validSamples.forEach(sample => {
-          expect(dataValidator[method](sample)).to.equal(true);
-        });
-        invalidSamples.forEach(sample => {
-          expect(dataValidator[method](sample)).to.equal(false);
-        });    
-      };
     });
     it('validates rates', function test() {
       validRates.forEach(sample => {
@@ -94,4 +91,82 @@ describe('DataValidator', function() {
 
   });
 
+  describe('@validateDevices', function() {
+    let validDevices,
+      invalidDevices,
+      maxPower;
+    beforeEach(function() {
+      const validData = loadData('src/test/inputExample.json');
+      validDevices = validData.devices;
+      maxPower = validData.maxPower;
+      invalidDevices = loadData('src/test/invalidDevices.json');
+    });
+    it('validates devices', function test() {
+      expect(dataValidator.validateDevices(validDevices, maxPower)).to.equal(true);
+      for (const flaw in invalidDevices) {
+        invalidDevices[flaw].forEach(sample => {
+          expect(dataValidator.validateDevices(sample, maxPower)).to.equal(false);
+        });
+      }
+    });
+
+    describe('_haveDevicesProperties', function() {
+      it('checks if devices have `id`, `name`, `power`, `duration` props', function test() {
+        iterateThroughData('_haveDevicesProperties', [validDevices], invalidDevices.noProps);
+      });
+    });
+
+    describe('_isDeviceId32charHashsum', function() {
+      it('checks if device `id`s are 32 char long strings that represent uppercase base-16 numbers', function test() {
+        iterateThroughData('_isDeviceId32charHashsum', [validDevices], invalidDevices.invalidId);
+      });
+    });
+
+    describe('_isDeviceNameAString', function() {
+      it('checks if device `name` is a string', function test() {
+        iterateThroughData('_isDeviceNameAString', [validDevices], invalidDevices.invalidName);
+      });
+    });
+
+    describe('_isDevicePowerPositiveInt', function() {
+      it('checks if device `power` is positive integer', function test() {
+        iterateThroughData('_isDevicePowerPositiveInt', [validDevices], invalidDevices.invalidPower);
+      });
+    });
+
+    describe('_isDeviceDurationNumOfHoursInADay', function() {
+      it('checks if device `duration` is integer in [1, 2, ..., 24]', function test() {
+        iterateThroughData('_isDeviceDurationNumOfHoursInADay', [validDevices], invalidDevices.invalidDuration);
+      });
+    });
+
+    describe('_isDeviceModeValid', function() {
+      it('checks if device `mode` property if present is one of ["day", "night"]', function test() {
+        iterateThroughData('_isDeviceModeValid', [validDevices], invalidDevices.invalidMode);
+      });
+    });
+
+    describe('_isDevicePowerLessThanMaxPower', function() {
+      it('checks if each device `power` is less than maxPower', function test() {
+        expect(dataValidator._isDevicePowerLessThanMaxPower(validDevices, maxPower))
+          .to.equal(true);
+
+        invalidDevices.tooMuchPower.forEach(devices => {
+          expect(dataValidator._isDevicePowerLessThanMaxPower(devices, maxPower))
+            .to.equal(false);
+        });
+      });
+    });
+
+    describe('_isTotalDevicesPowerNotExceed24HourLimit', function() {
+      it('checks if total consumption by all devices is less, than can be consumed in 24 hours', function test() {
+        expect(dataValidator._isTotalDevicesPowerNotExceed24HourLimit(validDevices, maxPower))
+          .to.equal(true);
+        invalidDevices.totalPowerExeedsDayLimit.forEach(devices => {
+          expect(dataValidator._isTotalDevicesPowerNotExceed24HourLimit(devices, maxPower))
+            .to.equal(false);
+        });
+      });
+    });
+  });
 });

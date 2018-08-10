@@ -20,12 +20,14 @@ export default class DataValidator {
     }).length;
   }
 
-  _haveRatesProperties(rates) {
-    return 0 === rates.filter(rate => {
-      return !(rate.hasOwnProperty('from')
-              && rate.hasOwnProperty('to')
-              && rate.hasOwnProperty('value'));
+  _haveEachObjProperties(collection, props) {
+    return 0 === collection.filter(obj => {
+      return props.length !== props.filter(prop => obj.hasOwnProperty(prop)).length;
     }).length;
+  }
+
+  _haveRatesProperties(rates) {
+    return this._haveEachObjProperties(rates, ['from', 'to', 'value']);
   }
 
   _haveNumericValues(rates) {
@@ -95,5 +97,92 @@ export default class DataValidator {
     }
 
     return true;
+  }
+
+  validateDevices(devices, maxPower) {
+    const validators = [
+      this._haveDevicesProperties,
+      this._isDeviceId32charHashsum,
+      this._isDeviceNameAString,
+      this._isDevicePowerPositiveInt,
+      this._isDeviceDurationNumOfHoursInADay,
+      this._isDeviceModeValid
+    ];
+    const validatorsMaxPower = [
+      this._isDevicePowerLessThanMaxPower,
+      this._isTotalDevicesPowerNotExceed24HourLimit
+    ];
+
+    const inherentConstraintsSatisfied = 0 === validators.filter(validator => {
+      return !validator.call(this, devices);
+    }).length
+
+    const maxPowerConstraintsSatisfied = 0 === validatorsMaxPower.filter(validator => {
+      return !validator.call(this, devices, maxPower);
+    }).length;
+
+    return inherentConstraintsSatisfied && maxPowerConstraintsSatisfied;
+  };
+
+  _haveDevicesProperties(devices) {
+    return this._haveEachObjProperties(devices, [
+      'id',
+      'name',
+      'power',
+      'duration'
+    ]);
+  }
+
+  _isDeviceId32charHashsum(devices) {
+    const char32HashsumRegExp = /^[A-F0-9]+$/;
+    return devices.length === devices.filter(device => {
+      return typeof device.id === 'string' 
+              && device.id.length === 32 
+              && char32HashsumRegExp.test(device.id);
+    }).length;
+  }
+
+  _isDeviceNameAString(devices) {
+    return devices.length === devices.filter(device => {
+      return typeof device.name === 'string';
+    }).length;
+  }
+
+  _isDevicePowerPositiveInt(devices) {
+    return devices.length === devices.filter(device => {
+      return typeof device.power === 'number'
+              && !isNaN(device.power)
+              && device.power > 0
+              && Math.floor(device.power) === device.power;
+    }).length;
+  }
+
+  _isDeviceDurationNumOfHoursInADay(devices) {
+    const hours = [...Array(25).keys()].slice(1);
+    return devices.length === devices.filter(device => {
+      return typeof device.duration === 'number'
+              && hours.includes(device.duration);
+    }).length;
+  }
+
+  _isDeviceModeValid(devices) {
+    const modes = ['day', 'night'];
+    return devices.length === devices.filter(device => {
+      return !device.hasOwnProperty('mode')
+              || (typeof device.mode === 'string'
+                  && modes.includes(device.mode));
+    }).length;
+  }
+
+  _isDevicePowerLessThanMaxPower(devices, maxPower) {
+    return devices.length === devices.filter(device => {
+      return device.power < maxPower;
+    }).length;
+  }
+
+  _isTotalDevicesPowerNotExceed24HourLimit(devices, maxPower) {
+    return this._24HOURS * maxPower >= devices.reduce((accum, device) => {
+      return accum + device.power * device.duration;
+    }, 0);
   }
 }
