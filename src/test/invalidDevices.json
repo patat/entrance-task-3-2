@@ -217,7 +217,7 @@
       }
     ]
   ],
-  "invalidDuration": [
+  "invalidDurationAll": [
     [
       {
           "id": "F972B82BA56A70CC579945773B6866FB",
@@ -258,6 +258,28 @@
           "name": "Кондиционер",
           "power": [10],
           "duration": [10]
+      }
+    ]
+  ],
+  "invalidDurationDay": [
+    [
+      {
+          "id": "C515D887EDBBE669B2FDAC62F571E9E9",
+          "name": "Духовка",
+          "power": 2000,
+          "duration": 15,
+          "mode": "day"
+      }
+    ]
+  ],
+  "invalidDurationNight": [
+    [
+      {
+          "id": "F972B82BA56A70CC579945773B6866FB",
+          "name": "Посудомоечная машина",
+          "power": 950,
+          "duration": 8,
+          "mode": "night"
       }
     ]
   ],
@@ -333,7 +355,7 @@
       }
     ]
   ],
-  "totalPowerExeedsDayLimit": [
+  "totalPowerExeeds24HourLimit": [
     [
         {
           "power": 2000,
@@ -347,6 +369,62 @@
           "power": 1000,
           "duration": 10
         }
+    ]
+  ],
+  "dayPowerExceedsDayLimit": [
+    [
+      {
+          "power": 950,
+          "duration": 14,
+          "mode": "day"
+      },
+      {
+          "power": 2000,
+          "duration": 14,
+          "mode": "day"
+      },
+      {
+          "power": 50,
+          "duration": 24
+      },
+      {
+          "power": 50,
+          "duration": 24,
+          "mode": "night"
+      },
+      {
+          "power": 850,
+          "duration": 1,
+          "mode": "night"
+      }
+    ]
+  ],
+  "nightPowerExceedsNightLimit": [
+    [
+      {
+          "power": 950,
+          "duration": 14,
+          "mode": "day"
+      },
+      {
+          "power": 2000,
+          "duration": 14,
+          "mode": "day"
+      },
+      {
+          "power": 50,
+          "duration": 24
+      },
+      {
+          "power": 1400,
+          "duration": 10,
+          "mode": "night"
+      },
+      {
+          "power": 850,
+          "duration": 10,
+          "mode": "night"
+      }
     ]
   ]
 }

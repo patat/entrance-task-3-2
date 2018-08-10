@@ -1,6 +1,10 @@
 export default class DataValidator {
   constructor() {
     this._24HOURS = 24;
+    this._DAY_HOURS = 14;
+    this._DAY_BEGINS = 7;
+    this._NIGHT_HOURS = 10;
+    this._NIGHT_BEGINS = 21;
   }
 
   validateRates(rates) {
@@ -105,12 +109,16 @@ export default class DataValidator {
       this._isDeviceId32charHashsum,
       this._isDeviceNameAString,
       this._isDevicePowerPositiveInt,
-      this._isDeviceDurationNumOfHoursInADay,
+      this._isDeviceDurationExceed24Hours,
+      this._isDayDeviceDurationExceedDayHours,
+      this._isNightDeviceDurationExceedNightHours,
       this._isDeviceModeValid
     ];
     const validatorsMaxPower = [
       this._isDevicePowerLessThanMaxPower,
-      this._isTotalDevicesPowerNotExceed24HourLimit
+      this._isTotalDevicesPowerNotExceed24HourLimit,
+      this._isDayDevicesPowerNotExceedDayPeriodLimit,
+      this._isNightDevicesPowerNotExceedNightPeriodLimit
     ];
 
     const inherentConstraintsSatisfied = 0 === validators.filter(validator => {
@@ -157,11 +165,27 @@ export default class DataValidator {
     }).length;
   }
 
-  _isDeviceDurationNumOfHoursInADay(devices) {
-    const hours = [...Array(25).keys()].slice(1);
+  _isDeviceDurationExceed24Hours(devices) {
+    const hours = [...Array(this._24HOURS + 1).keys()].slice(1);
     return devices.length === devices.filter(device => {
       return typeof device.duration === 'number'
               && hours.includes(device.duration);
+    }).length;
+  }
+
+  _isDayDeviceDurationExceedDayHours(devices) {
+    const hours = [...Array(this._DAY_HOURS + 1).keys()].slice(1);
+    const dayDevices = devices.filter(device => device.mode === 'day');
+    return dayDevices.length === dayDevices.filter(device => {
+      return hours.includes(device.duration);
+    }).length;
+  }
+
+  _isNightDeviceDurationExceedNightHours(devices) {
+    const hours = [...Array(this._DAY_BEGINS + 1).keys()].slice(1);
+    const nightDevices = devices.filter(device => device.mode === 'night');
+    return nightDevices.length === nightDevices.filter(device => {
+      return hours.includes(device.duration);
     }).length;
   }
 
@@ -183,6 +207,22 @@ export default class DataValidator {
   _isTotalDevicesPowerNotExceed24HourLimit(devices, maxPower) {
     return this._24HOURS * maxPower >= devices.reduce((accum, device) => {
       return accum + device.power * device.duration;
+    }, 0);
+  }
+
+  _isDayDevicesPowerNotExceedDayPeriodLimit(devices, maxPower) {
+    return this._DAY_HOURS * maxPower >= devices.filter(device => {
+      return device.mode === 'day';
+    }).reduce((accum, device) => {
+      return  accum + device.power * device.duration;
+    }, 0);
+  }
+
+  _isNightDevicesPowerNotExceedNightPeriodLimit(devices, maxPower) {
+    return this._NIGHT_HOURS * maxPower >= devices.filter(device => {
+      return device.mode === 'night';
+    }).reduce((accum, device) => {
+      return  accum + device.power * device.duration;
     }, 0);
   }
 }

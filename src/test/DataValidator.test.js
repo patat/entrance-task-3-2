@@ -134,9 +134,21 @@ describe('DataValidator', function() {
       });
     });
 
-    describe('_isDeviceDurationNumOfHoursInADay', function() {
+    describe('_isDeviceDurationExceed24Hours', function() {
       it('checks if device `duration` is integer in [1, 2, ..., 24]', function test() {
-        iterateThroughData('_isDeviceDurationNumOfHoursInADay', [validDevices], invalidDevices.invalidDuration);
+        iterateThroughData('_isDeviceDurationExceed24Hours', [validDevices], invalidDevices.invalidDurationAll);
+      });
+    });
+
+    describe('_isDayDeviceDurationExceedDayHours', function() {
+      it('checks if `mode` "day" device `duration` exceed day hours', function() {
+        iterateThroughData('_isDayDeviceDurationExceedDayHours', [validDevices], invalidDevices.invalidDurationDay);
+      });
+    });
+
+    describe('_isNightDeviceDurationExceedNightHours', function() {
+      it('checks if `mode` "night" device `duration` exceed night hours', function() {
+        iterateThroughData('_isNightDeviceDurationExceedNightHours', [validDevices], invalidDevices.invalidDurationNight);
       });
     });
 
@@ -162,8 +174,30 @@ describe('DataValidator', function() {
       it('checks if total consumption by all devices is less, than can be consumed in 24 hours', function test() {
         expect(dataValidator._isTotalDevicesPowerNotExceed24HourLimit(validDevices, maxPower))
           .to.equal(true);
-        invalidDevices.totalPowerExeedsDayLimit.forEach(devices => {
+        invalidDevices.totalPowerExeeds24HourLimit.forEach(devices => {
           expect(dataValidator._isTotalDevicesPowerNotExceed24HourLimit(devices, maxPower))
+            .to.equal(false);
+        });
+      });
+    });
+
+    describe('_isDayDevicesPowerNotExceedDayPeriodLimit', function() {
+      it('checks if devices with mode `day` cunsume less, than can be consumed over day period', function test() {
+        expect(dataValidator._isDayDevicesPowerNotExceedDayPeriodLimit(validDevices, maxPower))
+          .to.equal(true);
+        invalidDevices.dayPowerExceedsDayLimit.forEach(devices => {
+          expect(dataValidator._isDayDevicesPowerNotExceedDayPeriodLimit(devices, maxPower))
+            .to.equal(false);
+        });
+      });
+    });
+
+    describe('_isNightDevicesPowerNotExceedNightPeriodLimit', function() {
+      it('checks if devices with mode `night` cunsume less, than can be consumed over night period', function test() {
+        expect(dataValidator._isNightDevicesPowerNotExceedNightPeriodLimit(validDevices, maxPower))
+          .to.equal(true);
+        invalidDevices.nightPowerExceedsNightLimit.forEach(devices => {
+          expect(dataValidator._isNightDevicesPowerNotExceedNightPeriodLimit(devices, maxPower))
             .to.equal(false);
         });
       });
