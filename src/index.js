@@ -1,9 +1,4 @@
-import fs from 'fs';
 import Genetic from 'genetic-js';
-
-export function loadData(file) {
-  return JSON.parse(fs.readFileSync(file));
-}
 
 export function getRatesByHour(rates) {
   let ratesByHour = [];

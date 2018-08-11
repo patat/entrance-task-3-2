@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
+import { loadData } from '../utils';
 
 import {
-  loadData,
   calcPositions,
   calcOptimalPositions,
   getRatesByHour,

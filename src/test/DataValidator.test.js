@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { loadData } from '../index';
+import { loadData } from '../utils';
 import DataValidator from '../DataValidator';
 
 describe('DataValidator', function() {
