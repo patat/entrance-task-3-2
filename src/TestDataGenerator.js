@@ -65,34 +65,6 @@ export default class TestDataGenerator {
     
   }
 
-  _randomInt(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-  }
-
-  _randomFloat2(min, max) {
-    return +(Math.random() * (max - min) + min).toFixed(2);
-  }
-
-  _randomIntExcept(min, max, exceptions = []) {
-    const rnd = this._randomInt(min, max);
-    if (exceptions.includes(rnd)) {
-      return this._randomIntExcept(min, max, exceptions);
-    } else {
-      return rnd;
-    }
-  }
-
-  _generateNrndsWithSumM(n, m) {
-    const numbers = [0];
-    for (let i = 1; i < n; i++) {
-      numbers.push(this._randomIntExcept(0, m, numbers));
-    }
-    numbers.push(m);
-    numbers.sort((a, b) => a - b);
-
-    return numbers.map((number, index) => index === 0 ? 0 : number - numbers[index - 1]).slice(1);
-  }
-
   generateDevices() {
     const quantityRange = [...Array(this._config.devices.quantity).keys()];
 
@@ -125,8 +97,8 @@ export default class TestDataGenerator {
       let device = {
         "id": this._generateDeviceId(index),
         "name": this._generateDeviceName(),
-        "power": this._generateDevicePower('medium'),
-        "duration": this._generateDeviceDuration('short', mode)
+        "power": this._generateDevicePower(powerClasses[index]),
+        "duration": this._generateDeviceDuration(durationClasses[index], mode)
       };
       
       if (mode) {
@@ -135,6 +107,34 @@ export default class TestDataGenerator {
 
       return device;
     });
+  }
+
+  _randomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
+
+  _randomFloat2(min, max) {
+    return +(Math.random() * (max - min) + min).toFixed(2);
+  }
+
+  _randomIntExcept(min, max, exceptions = []) {
+    const rnd = this._randomInt(min, max);
+    if (exceptions.includes(rnd)) {
+      return this._randomIntExcept(min, max, exceptions);
+    } else {
+      return rnd;
+    }
+  }
+
+  _generateNrndsWithSumM(n, m) {
+    const numbers = [0];
+    for (let i = 1; i < n; i++) {
+      numbers.push(this._randomIntExcept(0, m, numbers));
+    }
+    numbers.push(m);
+    numbers.sort((a, b) => a - b);
+
+    return numbers.map((number, index) => index === 0 ? 0 : number - numbers[index - 1]).slice(1);
   }
 
   _generateDeviceId(index) {
