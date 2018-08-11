@@ -80,7 +80,7 @@ export default class TestDataGenerator {
       return this._powerClassEnum[1];
     });
 
-    const durationClasses = quantityRange.map(index => {
+    let durationClasses = quantityRange.map(index => {
       // ~ 2-1-1 moderate-short-long
       if (index < quantityRange.length / 4) {
         return this._durationClassEnum[0];
@@ -91,6 +91,7 @@ export default class TestDataGenerator {
 
       return this._durationClassEnum[1];
     });
+    durationClasses = this._redistributeDurationOnPowerClasses(durationClasses);
 
     return quantityRange.map(index => {
       const mode = this._generateDeviceMode();
@@ -228,7 +229,7 @@ export default class TestDataGenerator {
         shortestDuration = Math.ceil(2 * this._24HOURS / 3);
         longestDuration = this._24HOURS + 1;
         if (mode === 'day') {
-          shortestDuration = Math.ceil(2 * this._24HOURS / 3);
+          shortestDuration = Math.ceil(2 * this._DAY_HOURS / 3);
           longestDuration = this._DAY_HOURS + 1;
         }
         if (mode === 'night') {
@@ -240,6 +241,14 @@ export default class TestDataGenerator {
     }
 
     return this._randomInt(shortestDuration, longestDuration)
+  }
+
+  _redistributeDurationOnPowerClasses(durationClasses) {
+    // idea is to swap duration classes to ensure that high power devices
+    // belong to short or medium duration classes and low power devices
+    // belong to long or medium duration classes, as it is often the case
+    // in real world
+    return durationClasses.reverse();
   }
 
 }
