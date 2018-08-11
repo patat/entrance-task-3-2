@@ -17,6 +17,7 @@
     "deepmerge": "^2.1.1",
     "eslint": "^3.9.1",
     "eslint-loader": "^1.6.1",
+    "md5": "^2.2.1",
     "mocha": "^5.2.0"
   },
   "dependencies": {

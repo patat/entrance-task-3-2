@@ -11,9 +11,23 @@ describe('TestDataGenerator', function() {
     dataValidator = new DataValidator();
   });
 
+  describe('constructor', function() {
+    it('throws `invalid config` error', function test() {
+      const invalidConfig = {
+        devices: {
+          powerStep: 100
+        },
+        maxPower: 2050
+      }
+      expect(() => new TestDataGenerator(invalidConfig)).to.throw('invalid config');
+    });
+  });
+
   describe('@generate', function() {
     it('returns value', function test() {
-      expect(testDataGenerator.generate()).to.equal('hello schedule');
+      const inputData = testDataGenerator.generate();
+      //console.log(inputData);
+      expect(true).to.equal(false);
     });
   });
 
@@ -49,6 +63,25 @@ describe('TestDataGenerator', function() {
         const randoms = testDataGenerator._generateNrndsWithSumM(20, 24);
         expect(randoms.includes(0)).to.equal(false);
       });
+    });
+  });
+
+  describe('@generateDevices', function() {
+    beforeEach(function() {
+      config = {
+        devices: {
+          quantity: 10,
+          powerStep: 100
+        },
+        // use max peak consumption per hour
+        maxPower: 3000
+      };
+      testDataGenerator = new TestDataGenerator(config);
+    });
+    it('generates collection of devices that pass DataValidator@validateDevices', function test() {
+      const devices = testDataGenerator.generateDevices();
+      //console.log(devices);
+      expect(dataValidator.validateDevices(devices, config.maxPower)).to.equal(true);
     });
   });
 });
