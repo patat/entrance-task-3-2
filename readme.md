@@ -1,11 +1,6 @@
-Tutorial of how to author a library using [webpack](https://github.com/webpack/webpack).
+# entrance-task-3-2
 
-### Outline
+## Краткое описание
+Основной класс, который решает задачу называется `PowerScheduler`. Он использует в качестве зависимости библиотеку `genetic-js`, так как одним из вариантов решения я пробовал сделать генетический алгоритм. Но он показал нестабильные результаты. Поэтому для решения задачи был выбран другой алгоритм, менее быстрый, так как основан на переборе вариантов, но показывающий более стабильный результат. Решение задачи запускается через файл `index.js`.
 
-This library exposes functionality to transalte numbers to words.
-It is trivial code but the aim is to bundle it using webpack.
-
-### Features
-
-1. Bundling library code into all library targets ie CommonJS, AMD, ES2015 exports, UMD.
-2. Having `lodash` as an external dependency. 
+Валидация входных данных реализована в классе `DataValidator`. Основной класс его не использует, так как предполагается, что входные данные подаются уже проверенные. Я использовал валидацию входных данных для тестирования и при проверки входных данных, которые генерируются классом `TestDataGenerator`.
