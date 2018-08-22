@@ -1,0 +1,1000 @@
+[
+  {
+    "devices": [
+      {
+        "id": "AE5F6FE943B79224CAE518D3151414BC",
+        "name": "Пылесос",
+        "power": 1350,
+        "duration": 19
+      },
+      {
+        "id": "535518BB1065574860948D9178DB425E",
+        "name": "Минибар",
+        "power": 850,
+        "duration": 14,
+        "mode": "day"
+      },
+      {
+        "id": "8188CBB595273488181BF80693E1939B",
+        "name": "Холодильник",
+        "power": 1200,
+        "duration": 4,
+        "mode": "night"
+      },
+      {
+        "id": "FFC146F4503EAE241D7FEC2203A2BC82",
+        "name": "Минибар",
+        "power": 1950,
+        "duration": 6,
+        "mode": "day"
+      },
+      {
+        "id": "6F9FEA8BC288FBCA3C1BCCAAA9B9029C",
+        "name": "Посудомоечная машина",
+        "power": 1450,
+        "duration": 9,
+        "mode": "day"
+      },
+      {
+        "id": "6F72379681D777F2AFC67E7C35AD083C",
+        "name": "Wi-Fi роутер",
+        "power": 2300,
+        "duration": 3,
+        "mode": "night"
+      },
+      {
+        "id": "5068A0EC7239ACA65E0DA48C37B99862",
+        "name": "Стиральная машина",
+        "power": 1450,
+        "duration": 8,
+        "mode": "day"
+      },
+      {
+        "id": "A205371335ABBAA47A6C98E2D7C54549",
+        "name": "Полотенцесушитель",
+        "power": 1900,
+        "duration": 1,
+        "mode": "night"
+      },
+      {
+        "id": "B1EB6A48737635736F321AAD7C7E3555",
+        "name": "Wi-Fi роутер",
+        "power": 3900,
+        "duration": 1,
+        "mode": "night"
+      },
+      {
+        "id": "894390F66BFA24224796D811F05CC138",
+        "name": "Холодильник",
+        "power": 3400,
+        "duration": 2,
+        "mode": "night"
+      }
+    ],
+    "rates": [
+      {
+        "from": 12,
+        "to": 20,
+        "value": 6.1
+      },
+      {
+        "from": 20,
+        "to": 1,
+        "value": 2.23
+      },
+      {
+        "from": 1,
+        "to": 5,
+        "value": 1.94
+      },
+      {
+        "from": 5,
+        "to": 11,
+        "value": 4.93
+      },
+      {
+        "from": 11,
+        "to": 12,
+        "value": 3.7
+      }
+    ],
+    "maxPower": 4200
+  },
+  {
+    "devices": [
+      {
+        "id": "8E97B8DB71B128C16157962F10ADE681",
+        "name": "Термостат",
+        "power": 500,
+        "duration": 21
+      },
+      {
+        "id": "BEB7D36F19D8C0B051C09283C7EE065A",
+        "name": "Посудомоечная машина",
+        "power": 450,
+        "duration": 14,
+        "mode": "day"
+      },
+      {
+        "id": "419ECA7A12E9A5B90DBB4FEDEFEC9FB9",
+        "name": "Пылесос",
+        "power": 400,
+        "duration": 4,
+        "mode": "night"
+      },
+      {
+        "id": "DBCD4567745EFE16F61A320FC2C63AA4",
+        "name": "Полотенцесушитель",
+        "power": 1950,
+        "duration": 3,
+        "mode": "night"
+      },
+      {
+        "id": "F3903D19F8AD73C4C26791288B2736A3",
+        "name": "Минибар",
+        "power": 1700,
+        "duration": 10
+      },
+      {
+        "id": "CCF24B1E074477762F9E98894C1594E9",
+        "name": "Полотенцесушитель",
+        "power": 1700,
+        "duration": 13
+      },
+      {
+        "id": "DB306F697F689E9920B8AC726B1B9C70",
+        "name": "Холодильник",
+        "power": 2300,
+        "duration": 3,
+        "mode": "night"
+      },
+      {
+        "id": "5E41D5398837D596D6F5D3FDF157A217",
+        "name": "Тёплый пол",
+        "power": 2150,
+        "duration": 2,
+        "mode": "night"
+      },
+      {
+        "id": "9D67BBB586EAB311150AA121D69F9DF2",
+        "name": "Кондиционер",
+        "power": 4000,
+        "duration": 3
+      },
+      {
+        "id": "DD48106120F03A10AF8AC722AC049377",
+        "name": "Тёплый пол",
+        "power": 3550,
+        "duration": 1,
+        "mode": "night"
+      }
+    ],
+    "rates": [
+      {
+        "from": 19,
+        "to": 3,
+        "value": 6.3
+      },
+      {
+        "from": 3,
+        "to": 5,
+        "value": 5.24
+      },
+      {
+        "from": 5,
+        "to": 9,
+        "value": 5.92
+      },
+      {
+        "from": 9,
+        "to": 16,
+        "value": 1.2
+      },
+      {
+        "from": 16,
+        "to": 19,
+        "value": 6.7
+      }
+    ],
+    "maxPower": 4200
+  },
+  {
+    "devices": [
+      {
+        "id": "0B7D1CF3F924051BB010387939D7D9EA",
+        "name": "Джакузи",
+        "power": 350,
+        "duration": 16
+      },
+      {
+        "id": "25777D8BC1E82E17C0BC942823C573C2",
+        "name": "Минибар",
+        "power": 250,
+        "duration": 21
+      },
+      {
+        "id": "E5CE44D116142076E14DA6F6B86FD2A8",
+        "name": "Стереосистема",
+        "power": 1100,
+        "duration": 3,
+        "mode": "night"
+      },
+      {
+        "id": "8813E23171D2DA45CFCFC3991F404C5D",
+        "name": "Стереосистема",
+        "power": 2550,
+        "duration": 5,
+        "mode": "day"
+      },
+      {
+        "id": "2FD53A2A3C27C662208F01D17B13064C",
+        "name": "Термостат",
+        "power": 2050,
+        "duration": 6,
+        "mode": "day"
+      },
+      {
+        "id": "5CF65728963E028ACBFB78290755A569",
+        "name": "Термостат",
+        "power": 2750,
+        "duration": 4,
+        "mode": "night"
+      },
+      {
+        "id": "E2B89E8470645BD57C6A3876F22CE169",
+        "name": "Тёплый пол",
+        "power": 2600,
+        "duration": 3,
+        "mode": "night"
+      },
+      {
+        "id": "97376C656D8C868F9723F55478532064",
+        "name": "Стереосистема",
+        "power": 2500,
+        "duration": 2,
+        "mode": "night"
+      },
+      {
+        "id": "107E871ECF57D000DC93F3D5DCB10A75",
+        "name": "Пылесос",
+        "power": 3650,
+        "duration": 3,
+        "mode": "day"
+      },
+      {
+        "id": "BE9C2E4244435D12F884C5CD847C7D6F",
+        "name": "Кондиционер",
+        "power": 3800,
+        "duration": 1,
+        "mode": "night"
+      }
+    ],
+    "rates": [
+      {
+        "from": 4,
+        "to": 5,
+        "value": 2.93
+      },
+      {
+        "from": 5,
+        "to": 9,
+        "value": 5.76
+      },
+      {
+        "from": 9,
+        "to": 18,
+        "value": 4.2
+      },
+      {
+        "from": 18,
+        "to": 22,
+        "value": 4.23
+      },
+      {
+        "from": 22,
+        "to": 4,
+        "value": 2.43
+      }
+    ],
+    "maxPower": 4200
+  },
+  {
+    "devices": [
+      {
+        "id": "A9F0382E7E733615B2EA3F72FC768E92",
+        "name": "Полотенцесушитель",
+        "power": 150,
+        "duration": 7,
+        "mode": "night"
+      },
+      {
+        "id": "A624CF468A416A6847B0F1A9AF8006B7",
+        "name": "Стиральная машина",
+        "power": 500,
+        "duration": 5,
+        "mode": "night"
+      },
+      {
+        "id": "8A5B94974006EF3784B5AD42965209D9",
+        "name": "Wi-Fi роутер",
+        "power": 250,
+        "duration": 4,
+        "mode": "night"
+      },
+      {
+        "id": "9F471B50AC982438FB0E785ABFB74C70",
+        "name": "Полотенцесушитель",
+        "power": 2400,
+        "duration": 3,
+        "mode": "night"
+      },
+      {
+        "id": "8FAE2624931CF0235901E163FEDDEFBA",
+        "name": "Полотенцесушитель",
+        "power": 1950,
+        "duration": 9,
+        "mode": "day"
+      },
+      {
+        "id": "BB2B90A7EA9322353EA92CB08278C2CA",
+        "name": "Пылесос",
+        "power": 2600,
+        "duration": 4,
+        "mode": "night"
+      },
+      {
+        "id": "A19EC1FB853475C503CB1E3700E2CBA5",
+        "name": "Термостат",
+        "power": 1550,
+        "duration": 6,
+        "mode": "day"
+      },
+      {
+        "id": "47F6FF019F2BC4E2F5D3388E9B140FEA",
+        "name": "Микроволновка",
+        "power": 1550,
+        "duration": 1,
+        "mode": "day"
+      },
+      {
+        "id": "CA7A7EFC64BD73918D91007C8D831652",
+        "name": "Лампа",
+        "power": 3300,
+        "duration": 1,
+        "mode": "night"
+      },
+      {
+        "id": "2DCFBCC470C63D0866ACD849379B28BE",
+        "name": "Холодильник",
+        "power": 3350,
+        "duration": 2,
+        "mode": "night"
+      }
+    ],
+    "rates": [
+      {
+        "from": 16,
+        "to": 3,
+        "value": 3.39
+      },
+      {
+        "from": 3,
+        "to": 8,
+        "value": 5.45
+      },
+      {
+        "from": 8,
+        "to": 10,
+        "value": 1.58
+      },
+      {
+        "from": 10,
+        "to": 14,
+        "value": 6.32
+      },
+      {
+        "from": 14,
+        "to": 16,
+        "value": 1.99
+      }
+    ],
+    "maxPower": 4200
+  },
+  {
+    "devices": [
+      {
+        "id": "A8CB009AE3E397086F2322C8CDF665C9",
+        "name": "Джакузи",
+        "power": 1300,
+        "duration": 6,
+        "mode": "night"
+      },
+      {
+        "id": "4B2D6A0474BB650B62F76F891860E5ED",
+        "name": "Стереосистема",
+        "power": 100,
+        "duration": 22
+      },
+      {
+        "id": "82355116C988F2BDE147CCFE9C35338D",
+        "name": "Стиральная машина",
+        "power": 1050,
+        "duration": 4,
+        "mode": "night"
+      },
+      {
+        "id": "DD1E1227F91661AD1F54A9C962AF1987",
+        "name": "Полотенцесушитель",
+        "power": 2150,
+        "duration": 8
+      },
+      {
+        "id": "2394AEB3C3E88F7D1388BC2B89A9DCDF",
+        "name": "Телевизор",
+        "power": 1800,
+        "duration": 3,
+        "mode": "night"
+      },
+      {
+        "id": "411EB96AC9EDC7CD51CD8D998FDAD7EE",
+        "name": "Телевизор",
+        "power": 1400,
+        "duration": 15
+      },
+      {
+        "id": "E1D394F845F8173CAFDB7A0716A1D276",
+        "name": "Сигнализация",
+        "power": 1850,
+        "duration": 9,
+        "mode": "day"
+      },
+      {
+        "id": "9E4A4B09D3C5E4D7038670B900032541",
+        "name": "Джакузи",
+        "power": 1850,
+        "duration": 2
+      },
+      {
+        "id": "82DB76C9EAB9578D9CFC631CEA4384FA",
+        "name": "Wi-Fi роутер",
+        "power": 4000,
+        "duration": 1,
+        "mode": "night"
+      },
+      {
+        "id": "BF697D5B9264CA33EA77348D64CC1B7F",
+        "name": "Сигнализация",
+        "power": 3000,
+        "duration": 1,
+        "mode": "day"
+      }
+    ],
+    "rates": [
+      {
+        "from": 3,
+        "to": 9,
+        "value": 1.84
+      },
+      {
+        "from": 9,
+        "to": 14,
+        "value": 1.94
+      },
+      {
+        "from": 14,
+        "to": 0,
+        "value": 4.91
+      },
+      {
+        "from": 0,
+        "to": 2,
+        "value": 1.55
+      },
+      {
+        "from": 2,
+        "to": 3,
+        "value": 6.99
+      }
+    ],
+    "maxPower": 4200
+  },
+  {
+    "devices": [
+      {
+        "id": "2BE3FABF828C99B237608FCF40DEDD1E",
+        "name": "Холодильник",
+        "power": 1050,
+        "duration": 12,
+        "mode": "day"
+      },
+      {
+        "id": "F29C1F7FF095F176ED1A112CC45C3907",
+        "name": "Посудомоечная машина",
+        "power": 300,
+        "duration": 7,
+        "mode": "night"
+      },
+      {
+        "id": "2457490115C7A7720893394054808E7D",
+        "name": "Пылесос",
+        "power": 800,
+        "duration": 3,
+        "mode": "night"
+      },
+      {
+        "id": "2AD4809161569175FFFFE3A91177F8E8",
+        "name": "Посудомоечная машина",
+        "power": 2050,
+        "duration": 8,
+        "mode": "day"
+      },
+      {
+        "id": "8410C35AC7973F28E371DC202A2A3E22",
+        "name": "Джакузи",
+        "power": 2100,
+        "duration": 8
+      },
+      {
+        "id": "360510AE5DFF04D2417E474B4E00CF71",
+        "name": "Стереосистема",
+        "power": 2250,
+        "duration": 3,
+        "mode": "night"
+      },
+      {
+        "id": "353248BA08876911E86EDC8562A408E6",
+        "name": "Стиральная машина",
+        "power": 2100,
+        "duration": 4,
+        "mode": "night"
+      },
+      {
+        "id": "0E85169C3DE577A608AFF4C4284AC9CE",
+        "name": "Кондиционер",
+        "power": 2550,
+        "duration": 1,
+        "mode": "night"
+      },
+      {
+        "id": "E18323872C1265A3A58184CACEFD45EA",
+        "name": "Стереосистема",
+        "power": 3500,
+        "duration": 1,
+        "mode": "night"
+      },
+      {
+        "id": "D6BA7FABFD85CBF18E265F780A32200D",
+        "name": "Термостат",
+        "power": 3200,
+        "duration": 1,
+        "mode": "night"
+      }
+    ],
+    "rates": [
+      {
+        "from": 8,
+        "to": 12,
+        "value": 5.31
+      },
+      {
+        "from": 12,
+        "to": 23,
+        "value": 3.35
+      },
+      {
+        "from": 23,
+        "to": 4,
+        "value": 4.34
+      },
+      {
+        "from": 4,
+        "to": 6,
+        "value": 1.33
+      },
+      {
+        "from": 6,
+        "to": 8,
+        "value": 2.16
+      }
+    ],
+    "maxPower": 4200
+  },
+  {
+    "devices": [
+      {
+        "id": "5EF853833FE728D2D13BF5FB7A4EF9D3",
+        "name": "Минибар",
+        "power": 250,
+        "duration": 5,
+        "mode": "night"
+      },
+      {
+        "id": "4BA690F621CA44205840FDBD8815A06A",
+        "name": "Стиральная машина",
+        "power": 300,
+        "duration": 18
+      },
+      {
+        "id": "03BFF0F2F4A58087A16CD8AA29FA10AF",
+        "name": "Телевизор",
+        "power": 550,
+        "duration": 3,
+        "mode": "night"
+      },
+      {
+        "id": "087848407112D684A7632ED111BFBE41",
+        "name": "Посудомоечная машина",
+        "power": 2250,
+        "duration": 6,
+        "mode": "day"
+      },
+      {
+        "id": "B707EA241594B38F4C6287EDA8CFDAB5",
+        "name": "Стиральная машина",
+        "power": 2200,
+        "duration": 14
+      },
+      {
+        "id": "F6A27ED4B85527B5BA3917CF1FA43D5E",
+        "name": "Стереосистема",
+        "power": 2350,
+        "duration": 3,
+        "mode": "night"
+      },
+      {
+        "id": "CBD66C6DE6610729CC7BC757D1E18DE3",
+        "name": "Духовка",
+        "power": 2450,
+        "duration": 3,
+        "mode": "night"
+      },
+      {
+        "id": "9531D03C72670829DD3B2971819387A1",
+        "name": "Стереосистема",
+        "power": 2650,
+        "duration": 2,
+        "mode": "night"
+      },
+      {
+        "id": "02742D292CF4350F8AA5ECA52BF6CD7E",
+        "name": "Термостат",
+        "power": 3850,
+        "duration": 4,
+        "mode": "day"
+      },
+      {
+        "id": "55CFFCE7F638DA401EFCCC434E4CE50B",
+        "name": "Телевизор",
+        "power": 2800,
+        "duration": 1,
+        "mode": "night"
+      }
+    ],
+    "rates": [
+      {
+        "from": 23,
+        "to": 4,
+        "value": 5.97
+      },
+      {
+        "from": 4,
+        "to": 9,
+        "value": 2.41
+      },
+      {
+        "from": 9,
+        "to": 10,
+        "value": 2.09
+      },
+      {
+        "from": 10,
+        "to": 22,
+        "value": 6.66
+      },
+      {
+        "from": 22,
+        "to": 23,
+        "value": 2.74
+      }
+    ],
+    "maxPower": 4200
+  },
+  {
+    "devices": [
+      {
+        "id": "AD5DAAA075D3D0527C2D6D08A6E7F834",
+        "name": "Тёплый пол",
+        "power": 1150,
+        "duration": 12,
+        "mode": "day"
+      },
+      {
+        "id": "2AEFC3C43BCCE2569277EC1D32C9EB93",
+        "name": "Джакузи",
+        "power": 250,
+        "duration": 10,
+        "mode": "day"
+      },
+      {
+        "id": "DFAA4AD867675F5E4B05A7DC9C2AD24D",
+        "name": "Лампа",
+        "power": 1250,
+        "duration": 15
+      },
+      {
+        "id": "4DBBA223070A55F72A9C183C885793DE",
+        "name": "Минибар",
+        "power": 1650,
+        "duration": 6,
+        "mode": "day"
+      },
+      {
+        "id": "96CF8FA6805B06E94AE4DFC817C582AD",
+        "name": "Минибар",
+        "power": 1500,
+        "duration": 3,
+        "mode": "night"
+      },
+      {
+        "id": "20207F7B80FFBA69A07F02703788BC5D",
+        "name": "Посудомоечная машина",
+        "power": 1850,
+        "duration": 9
+      },
+      {
+        "id": "22EB2B1E44646237028F61C1EAC056F0",
+        "name": "Микроволновка",
+        "power": 2400,
+        "duration": 8
+      },
+      {
+        "id": "72FD232F5B69279CD149CE5B15063E49",
+        "name": "Телевизор",
+        "power": 2300,
+        "duration": 1,
+        "mode": "night"
+      },
+      {
+        "id": "1D9FC517A4926ECF9DF47AD6AD31FA4F",
+        "name": "Посудомоечная машина",
+        "power": 3750,
+        "duration": 1,
+        "mode": "night"
+      },
+      {
+        "id": "BD576C47E0A154FB360DFE4116C49549",
+        "name": "Wi-Fi роутер",
+        "power": 3700,
+        "duration": 1,
+        "mode": "day"
+      }
+    ],
+    "rates": [
+      {
+        "from": 23,
+        "to": 5,
+        "value": 5.16
+      },
+      {
+        "from": 5,
+        "to": 6,
+        "value": 3.85
+      },
+      {
+        "from": 6,
+        "to": 16,
+        "value": 6.93
+      },
+      {
+        "from": 16,
+        "to": 20,
+        "value": 1.05
+      },
+      {
+        "from": 20,
+        "to": 23,
+        "value": 2.2
+      }
+    ],
+    "maxPower": 4200
+  },
+  {
+    "devices": [
+      {
+        "id": "DCD3A6B8A22E1D429DC2B5E7BC1B1244",
+        "name": "Лампа",
+        "power": 350,
+        "duration": 22
+      },
+      {
+        "id": "3C19E439E32C8C21816E8A24AB938314",
+        "name": "Стиральная машина",
+        "power": 1000,
+        "duration": 5,
+        "mode": "night"
+      },
+      {
+        "id": "FB8FFF63B6C4D2B5DF714E1F7248EE6B",
+        "name": "Телевизор",
+        "power": 350,
+        "duration": 8,
+        "mode": "day"
+      },
+      {
+        "id": "CB7274220D37B35887A50965B430D2E6",
+        "name": "Стиральная машина",
+        "power": 2150,
+        "duration": 7,
+        "mode": "day"
+      },
+      {
+        "id": "73862F6A4B6851CA7C701192AA18CC28",
+        "name": "Стиральная машина",
+        "power": 1400,
+        "duration": 3,
+        "mode": "night"
+      },
+      {
+        "id": "24A105094C9FE1281F851D7BAC04E9F2",
+        "name": "Стереосистема",
+        "power": 1750,
+        "duration": 4,
+        "mode": "night"
+      },
+      {
+        "id": "B156A647CBED52C9081E531BCA222FCF",
+        "name": "Стереосистема",
+        "power": 1600,
+        "duration": 14
+      },
+      {
+        "id": "73DE768911883956FEA38F3A58BE6C85",
+        "name": "Сигнализация",
+        "power": 2150,
+        "duration": 2,
+        "mode": "night"
+      },
+      {
+        "id": "0C3C20FC339C26DD69F9FB0CCB0027F9",
+        "name": "Джакузи",
+        "power": 3850,
+        "duration": 3
+      },
+      {
+        "id": "22D1A8A914D91EC5D0A4443DDFE6A376",
+        "name": "Термостат",
+        "power": 3650,
+        "duration": 1,
+        "mode": "night"
+      }
+    ],
+    "rates": [
+      {
+        "from": 15,
+        "to": 2,
+        "value": 6.22
+      },
+      {
+        "from": 2,
+        "to": 3,
+        "value": 3.24
+      },
+      {
+        "from": 3,
+        "to": 6,
+        "value": 5.02
+      },
+      {
+        "from": 6,
+        "to": 12,
+        "value": 6.43
+      },
+      {
+        "from": 12,
+        "to": 15,
+        "value": 5.38
+      }
+    ],
+    "maxPower": 4200
+  },
+  {
+    "devices": [
+      {
+        "id": "61586C08797CB544EF57B5B7B8FF2211",
+        "name": "Полотенцесушитель",
+        "power": 550,
+        "duration": 7,
+        "mode": "night"
+      },
+      {
+        "id": "960BC199FF1FD60F9C26D470E3B49653",
+        "name": "Пылесос",
+        "power": 700,
+        "duration": 5,
+        "mode": "night"
+      },
+      {
+        "id": "6493429B35999ECEF891530AA5F598C2",
+        "name": "Полотенцесушитель",
+        "power": 800,
+        "duration": 4,
+        "mode": "night"
+      },
+      {
+        "id": "4EDEDEE384353AF2DE39ECFED269216C",
+        "name": "Сигнализация",
+        "power": 1550,
+        "duration": 11
+      },
+      {
+        "id": "0D4D705B76EFE89CEF7F73DF45351452",
+        "name": "Стереосистема",
+        "power": 2100,
+        "duration": 3,
+        "mode": "night"
+      },
+      {
+        "id": "871CE0F7FA88C4318098B088696CAF31",
+        "name": "Wi-Fi роутер",
+        "power": 1500,
+        "duration": 9,
+        "mode": "day"
+      },
+      {
+        "id": "BE84CC25C5EF066740FD502D0B87EE33",
+        "name": "Wi-Fi роутер",
+        "power": 2350,
+        "duration": 6,
+        "mode": "day"
+      },
+      {
+        "id": "5BC7A7644D54B8DE12FCB64F768E81C5",
+        "name": "Посудомоечная машина",
+        "power": 1700,
+        "duration": 7
+      },
+      {
+        "id": "BFDA55879511E48DC364B8B26506878A",
+        "name": "Джакузи",
+        "power": 3300,
+        "duration": 2,
+        "mode": "day"
+      },
+      {
+        "id": "B3FC029FA4588EEED79A06556DA690D8",
+        "name": "Тёплый пол",
+        "power": 2900,
+        "duration": 2,
+        "mode": "day"
+      }
+    ],
+    "rates": [
+      {
+        "from": 2,
+        "to": 13,
+        "value": 6.93
+      },
+      {
+        "from": 13,
+        "to": 16,
+        "value": 5.02
+      },
+      {
+        "from": 16,
+        "to": 17,
+        "value": 4.82
+      },
+      {
+        "from": 17,
+        "to": 0,
+        "value": 3.2
+      },
+      {
+        "from": 0,
+        "to": 2,
+        "value": 1.85
+      }
+    ],
+    "maxPower": 4200
+  }
+]

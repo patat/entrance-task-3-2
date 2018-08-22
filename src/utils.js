@@ -1,14 +1,14 @@
 import fs from 'fs';
 
-export function loadData(file) {
+export function loadData (file) {
   return JSON.parse(fs.readFileSync(file, { encoding: 'utf8' }));
 }
 
-export function appendGeneratedInput(file, input) {
+export function appendGeneratedInput (file, input) {
   let fileContents;
   try {
     fileContents = loadData(file);
-  } catch(ex) {
+  } catch (ex) {
     fileContents = [];
     fs.writeFileSync(file, JSON.stringify(fileContents));
   }

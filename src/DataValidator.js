@@ -1,5 +1,5 @@
 export default class DataValidator {
-  constructor() {
+  constructor () {
     this._24HOURS = 24;
     this._DAY_HOURS = 14;
     this._DAY_BEGINS = 7;
@@ -7,7 +7,7 @@ export default class DataValidator {
     this._NIGHT_BEGINS = 21;
   }
 
-  validateRates(rates) {
+  validateRates (rates) {
     const validators = [
       this._haveRatesProperties,
       this._haveNumericValues,
@@ -19,44 +19,44 @@ export default class DataValidator {
       this._doRatePeriodsNotIntersect
     ];
 
-    return 0 === validators.filter(validator => {
+    return validators.filter(validator => {
       return !validator.call(this, rates);
-    }).length;
+    }).length === 0;
   }
 
-  _haveEachObjProperties(collection, props) {
-    return 0 === collection.filter(obj => {
+  _haveEachObjProperties (collection, props) {
+    return collection.filter(obj => {
       return props.length !== props.filter(prop => obj.hasOwnProperty(prop)).length;
-    }).length;
+    }).length === 0;
   }
 
-  _haveRatesProperties(rates) {
+  _haveRatesProperties (rates) {
     return this._haveEachObjProperties(rates, ['from', 'to', 'value']);
   }
 
-  _haveNumericValues(rates) {
-    function isNumber(n) {
+  _haveNumericValues (rates) {
+    function isNumber (n) {
       return typeof n === 'number' && !isNaN(n) && isFinite(n);
     }
 
-    return 0 === rates.filter(rate => {
+    return rates.filter(rate => {
       return !(isNumber(rate.from) && isNumber(rate.to) && isNumber(rate.value));
-    }).length;
+    }).length === 0;
   }
 
-  _haveNonNegativeValues(rates) {
-    return 0 === rates.filter(rate => {
+  _haveNonNegativeValues (rates) {
+    return rates.filter(rate => {
       return rate.from < 0 || rate.to < 0 || rate.value < 0;
-    }).length;
+    }).length === 0;
   }
 
-  _areFromAndToWithin24Hours(rates) {
-    return 0 === rates.filter(rate => {
+  _areFromAndToWithin24Hours (rates) {
+    return rates.filter(rate => {
       return rate.from >= 24 || rate.to >= 24;
-    }).length;
+    }).length === 0;
   }
 
-  _doRatesSpanFor24Hours(rates) {
+  _doRatesSpanFor24Hours (rates) {
     return this._24HOURS === rates.reduce((accum, rate) => {
       let rateSpan;
       if (rate.to > rate.from) {
@@ -64,23 +64,24 @@ export default class DataValidator {
       } else {
         rateSpan = this._24HOURS - rate.from + rate.to;
       }
-      return accum += rateSpan;
+      accum += rateSpan;
+      return accum;
     }, 0);
   }
 
-  _haveRatePeriodsNonZeroLength(rates) {
-    return 0 === rates.reduce((accum, rate) => {
+  _haveRatePeriodsNonZeroLength (rates) {
+    return rates.reduce((accum, rate) => {
       return rate.from === rate.to ? accum + 1 : accum;
-    }, 0);
+    }, 0) === 0;
   }
 
-  _doRatesCrossMidnightNoMoreThanOnce(rates) {
-    return 1 >= rates.reduce((accum, rate) => {
+  _doRatesCrossMidnightNoMoreThanOnce (rates) {
+    return rates.reduce((accum, rate) => {
       return rate.from < rate.to ? accum : accum + 1;
-    }, 0);
+    }, 0) <= 1;
   }
 
-  _doRatePeriodsNotIntersect(rates) {
+  _doRatePeriodsNotIntersect (rates) {
     let unique = {};
     for (const rate of rates) {
       if (rate.from < rate.to) {
@@ -95,7 +96,7 @@ export default class DataValidator {
         }
         for (let i = 0; i < rate.to; i++) {
           if (unique[i] !== undefined) return false;
-          unique[i] = i;          
+          unique[i] = i;
         }
       }
     }
@@ -103,7 +104,7 @@ export default class DataValidator {
     return true;
   }
 
-  validateDevices(devices, maxPower) {
+  validateDevices (devices, maxPower) {
     const validators = [
       this._haveDevicesProperties,
       this._isDeviceId32charHashsum,
@@ -121,18 +122,18 @@ export default class DataValidator {
       this._isNightDevicesPowerNotExceedNightPeriodLimit
     ];
 
-    const inherentConstraintsSatisfied = 0 === validators.filter(validator => {
+    const inherentConstraintsSatisfied = validators.filter(validator => {
       return !validator.call(this, devices);
-    }).length
+    }).length === 0;
 
-    const maxPowerConstraintsSatisfied = 0 === validatorsMaxPower.filter(validator => {
+    const maxPowerConstraintsSatisfied = validatorsMaxPower.filter(validator => {
       return !validator.call(this, devices, maxPower);
-    }).length;
+    }).length === 0;
 
     return inherentConstraintsSatisfied && maxPowerConstraintsSatisfied;
-  };
+  }
 
-  _haveDevicesProperties(devices) {
+  _haveDevicesProperties (devices) {
     return this._haveEachObjProperties(devices, [
       'id',
       'name',
@@ -141,39 +142,39 @@ export default class DataValidator {
     ]);
   }
 
-  _isDeviceId32charHashsum(devices) {
+  _isDeviceId32charHashsum (devices) {
     const char32HashsumRegExp = /^[A-F0-9]+$/;
     return devices.length === devices.filter(device => {
-      return typeof device.id === 'string' 
-              && device.id.length === 32 
-              && char32HashsumRegExp.test(device.id);
+      return typeof device.id === 'string' &&
+              device.id.length === 32 &&
+              char32HashsumRegExp.test(device.id);
     }).length;
   }
 
-  _isDeviceNameAString(devices) {
+  _isDeviceNameAString (devices) {
     return devices.length === devices.filter(device => {
       return typeof device.name === 'string';
     }).length;
   }
 
-  _isDevicePowerPositiveInt(devices) {
+  _isDevicePowerPositiveInt (devices) {
     return devices.length === devices.filter(device => {
-      return typeof device.power === 'number'
-              && !isNaN(device.power)
-              && device.power > 0
-              && Math.floor(device.power) === device.power;
+      return typeof device.power === 'number' &&
+              !isNaN(device.power) &&
+              device.power > 0 &&
+              Math.floor(device.power) === device.power;
     }).length;
   }
 
-  _isDeviceDurationExceed24Hours(devices) {
+  _isDeviceDurationExceed24Hours (devices) {
     const hours = [...Array(this._24HOURS + 1).keys()].slice(1);
     return devices.length === devices.filter(device => {
-      return typeof device.duration === 'number'
-              && hours.includes(device.duration);
+      return typeof device.duration === 'number' &&
+              hours.includes(device.duration);
     }).length;
   }
 
-  _isDayDeviceDurationExceedDayHours(devices) {
+  _isDayDeviceDurationExceedDayHours (devices) {
     const hours = [...Array(this._DAY_HOURS + 1).keys()].slice(1);
     const dayDevices = devices.filter(device => device.mode === 'day');
     return dayDevices.length === dayDevices.filter(device => {
@@ -181,7 +182,7 @@ export default class DataValidator {
     }).length;
   }
 
-  _isNightDeviceDurationExceedNightHours(devices) {
+  _isNightDeviceDurationExceedNightHours (devices) {
     const hours = [...Array(this._DAY_BEGINS + 1).keys()].slice(1);
     const nightDevices = devices.filter(device => device.mode === 'night');
     return nightDevices.length === nightDevices.filter(device => {
@@ -189,40 +190,40 @@ export default class DataValidator {
     }).length;
   }
 
-  _isDeviceModeValid(devices) {
+  _isDeviceModeValid (devices) {
     const modes = ['day', 'night'];
     return devices.length === devices.filter(device => {
-      return !device.hasOwnProperty('mode')
-              || (typeof device.mode === 'string'
-                  && modes.includes(device.mode));
+      return !device.hasOwnProperty('mode') ||
+              (typeof device.mode === 'string' &&
+                  modes.includes(device.mode));
     }).length;
   }
 
-  _isDevicePowerLessThanMaxPower(devices, maxPower) {
+  _isDevicePowerLessThanMaxPower (devices, maxPower) {
     return devices.length === devices.filter(device => {
       return device.power < maxPower;
     }).length;
   }
 
-  _isTotalDevicesPowerNotExceed24HourLimit(devices, maxPower) {
+  _isTotalDevicesPowerNotExceed24HourLimit (devices, maxPower) {
     return this._24HOURS * maxPower >= devices.reduce((accum, device) => {
       return accum + device.power * device.duration;
     }, 0);
   }
 
-  _isDayDevicesPowerNotExceedDayPeriodLimit(devices, maxPower) {
+  _isDayDevicesPowerNotExceedDayPeriodLimit (devices, maxPower) {
     return this._DAY_HOURS * maxPower >= devices.filter(device => {
       return device.mode === 'day';
     }).reduce((accum, device) => {
-      return  accum + device.power * device.duration;
+      return accum + device.power * device.duration;
     }, 0);
   }
 
-  _isNightDevicesPowerNotExceedNightPeriodLimit(devices, maxPower) {
+  _isNightDevicesPowerNotExceedNightPeriodLimit (devices, maxPower) {
     return this._NIGHT_HOURS * maxPower >= devices.filter(device => {
       return device.mode === 'night';
     }).reduce((accum, device) => {
-      return  accum + device.power * device.duration;
+      return accum + device.power * device.duration;
     }, 0);
   }
 }

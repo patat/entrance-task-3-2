@@ -5,8 +5,10 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "babel -d lib/ src/",
-    "test": "mocha --require babel-register \"src/test/**/*.test.js\"",
-    "dev": "npm run test -- --watch"
+    "test": "semistandard && mocha --require babel-register \"src/test/**/*.test.js\"",
+    "dev": "npm run test -- --watch",
+    "generate:input": "mocha --require babel-register \"src/generate/generateTestData.js\"",
+    "test:generated": "mocha --require babel-register \"src/generate/testOnGenerated.js\""
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -21,6 +23,13 @@
     "mocha": "^5.2.0"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "genetic-js": "^0.1.14"
+  },
+  "semistandard": {
+    "ignore": [
+      "**/test/",
+      "**/generate"
+    ]
   }
 }

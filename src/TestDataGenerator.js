@@ -1,9 +1,8 @@
 import merge from 'deepmerge';
-import fs from 'fs';
 import md5 from 'md5';
 
 export default class TestDataGenerator {
-  constructor(config = {}) {
+  constructor (config = {}) {
     const defaultConfig = {
       rates: {
         periods: 5,
@@ -32,7 +31,7 @@ export default class TestDataGenerator {
     }
   }
 
-  generate() {
+  generate () {
     return {
       devices: this.generateDevices(),
       rates: this.generateRates(),
@@ -40,7 +39,7 @@ export default class TestDataGenerator {
     };
   }
 
-  generateRates() {
+  generateRates () {
     let valueMin, valueMax;
     [valueMin, valueMax] = this._config.rates.priceInterval;
     const ratePeriodLengths = this._generateNrndsWithSumM(this._config.rates.periods, this._24HOURS);
@@ -48,24 +47,23 @@ export default class TestDataGenerator {
     let currPeriodFrom = cycleBias;
     return ratePeriodLengths.map(PeriodLength => {
       let currPeriodTo = currPeriodFrom + PeriodLength;
-      if (currPeriodTo >= this._24HOURS ) {
+      if (currPeriodTo >= this._24HOURS) {
         currPeriodTo -= this._24HOURS;
       }
 
       const period = {
         from: currPeriodFrom,
         to: currPeriodTo,
-        value: this._randomFloat2(valueMin, valueMax)   
-      }
+        value: this._randomFloat2(valueMin, valueMax)
+      };
 
       currPeriodFrom = currPeriodTo;
 
       return period;
     });
-    
   }
 
-  generateDevices() {
+  generateDevices () {
     const quantityRange = [...Array(this._config.devices.quantity).keys()];
 
     const powerClasses = quantityRange.map(index => {
@@ -96,12 +94,12 @@ export default class TestDataGenerator {
     return quantityRange.map(index => {
       const mode = this._generateDeviceMode();
       let device = {
-        "id": this._generateDeviceId(index),
-        "name": this._generateDeviceName(),
-        "power": this._generateDevicePower(powerClasses[index]),
-        "duration": this._generateDeviceDuration(durationClasses[index], mode)
+        'id': this._generateDeviceId(index),
+        'name': this._generateDeviceName(),
+        'power': this._generateDevicePower(powerClasses[index]),
+        'duration': this._generateDeviceDuration(durationClasses[index], mode)
       };
-      
+
       if (mode) {
         device.mode = mode;
       }
@@ -110,15 +108,15 @@ export default class TestDataGenerator {
     });
   }
 
-  _randomInt(min, max) {
+  _randomInt (min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
   }
 
-  _randomFloat2(min, max) {
+  _randomFloat2 (min, max) {
     return +(Math.random() * (max - min) + min).toFixed(2);
   }
 
-  _randomIntExcept(min, max, exceptions = []) {
+  _randomIntExcept (min, max, exceptions = []) {
     const rnd = this._randomInt(min, max);
     if (exceptions.includes(rnd)) {
       return this._randomIntExcept(min, max, exceptions);
@@ -127,7 +125,7 @@ export default class TestDataGenerator {
     }
   }
 
-  _generateNrndsWithSumM(n, m) {
+  _generateNrndsWithSumM (n, m) {
     const numbers = [0];
     for (let i = 1; i < n; i++) {
       numbers.push(this._randomIntExcept(0, m, numbers));
@@ -138,44 +136,44 @@ export default class TestDataGenerator {
     return numbers.map((number, index) => index === 0 ? 0 : number - numbers[index - 1]).slice(1);
   }
 
-  _generateDeviceId(index) {
+  _generateDeviceId (index) {
     return md5(Date.now() + index * 999999).toUpperCase();
   }
 
-  _generateDeviceName() {
+  _generateDeviceName () {
     const names = [
-      "Посудомоечная машина",
-      "Стиральная машина",
-      "Wi-Fi роутер",
-      "Духовка",
-      "Микроволновка",
-      "Кондиционер",
-      "Лампа",
-      "Термостат",
-      "Холодильник",
-      "Полотенцесушитель",
-      "Сигнализация",
-      "Пылесос",
-      "Стереосистема",
-      "Джакузи",
-      "Минибар",
-      "Тёплый пол",
-      "Телевизор"
+      'Посудомоечная машина',
+      'Стиральная машина',
+      'Wi-Fi роутер',
+      'Духовка',
+      'Микроволновка',
+      'Кондиционер',
+      'Лампа',
+      'Термостат',
+      'Холодильник',
+      'Полотенцесушитель',
+      'Сигнализация',
+      'Пылесос',
+      'Стереосистема',
+      'Джакузи',
+      'Минибар',
+      'Тёплый пол',
+      'Телевизор'
     ];
     return names[this._randomInt(0, names.length)];
   }
 
-  _generateDeviceMode() {
+  _generateDeviceMode () {
     const choice = this._randomInt(0, 3);
     return this._modesEnum[choice];
   }
 
-  _generateDevicePower(powerClass) {
+  _generateDevicePower (powerClass) {
     const maxPowerInSteps = this._config.maxPower / this._config.devices.powerStep;
     let lowerBound,
-        upperBound;
+      upperBound;
 
-    switch(powerClass) {
+    switch (powerClass) {
       case 'low': {
         lowerBound = 1;
         upperBound = Math.floor(maxPowerInSteps / 3);
@@ -196,11 +194,11 @@ export default class TestDataGenerator {
     return this._randomInt(lowerBound, upperBound) * this._config.devices.powerStep;
   }
 
-  _generateDeviceDuration(durationClass, mode) {
+  _generateDeviceDuration (durationClass, mode) {
     let shortestDuration,
-        longestDuration;
+      longestDuration;
 
-    switch(durationClass) {
+    switch (durationClass) {
       case 'short': {
         shortestDuration = 1;
         longestDuration = Math.ceil(this._24HOURS / 3);
@@ -240,15 +238,14 @@ export default class TestDataGenerator {
       }
     }
 
-    return this._randomInt(shortestDuration, longestDuration)
+    return this._randomInt(shortestDuration, longestDuration);
   }
 
-  _redistributeDurationOnPowerClasses(durationClasses) {
+  _redistributeDurationOnPowerClasses (durationClasses) {
     // idea is to swap duration classes to ensure that high power devices
     // belong to short or medium duration classes and low power devices
     // belong to long or medium duration classes, as it is often the case
     // in real world
     return durationClasses.reverse();
   }
-
 }
